@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>|Miko|</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url("BG.gif") repeat center / cover;
+      transition: background-color 0.5s;
+    }
+  
+    .image-container {
+      position: relative;
+      cursor: pointer;
+    }
+  
+    img {
+      max-width: 200px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 5px;
+      /* Bo viền cho ảnh */
+      transition: border 0.3s;
+      /* Hiệu ứng chuyển đổi bo viền trong 0.3 giây */
+    }
+  
+    .image-container.open .img-border {
+      border: 4px solid #ffc116;
+      /* Màu bo viền khi mở phong thư */
+    }
+  
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  
+    .image-container:hover .overlay {
+      opacity: 1;
+    }
+  
+    .open-button {
+      padding: 10px 20px;
+      background-color: #d0a01e;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+    }
+  
+    .letter {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 80%;
+      font-size: 15px;
+      /* Other styles... */
+      max-height: 80%;
+      /* Limit the maximum height of the letter content */
+      overflow-y: auto;
+      /* Add scroll bar when content overflows */
+    }
+  
+    .letter.active {
+      display: block;
+    }
+  </style>
+    
+</head>
+<body>
+
+  <div class="image-container">
+    <img src="Phong thư.png" alt="Phong thư">
+    <div class="overlay">
+      <div class="overlay-content">
+        <button class="open-button" onclick="openLetter()">Open</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="letter" id="letterContent">
+    <h1>Gửi cậu,</h1>
+    <p>(Đây đúng ra là lá thư ở trong cuốn Miko màu hồng, nhưng giờ tớ viết lại gửi cậu, vì tớ lỡ mất nó ở Hải Phòng rồi, mong cậu khi đọc được thư này thì cậu đang có một buổi tối mát mẻ và thoải mái)</p>
+    <p>Tuần này tớ được trở về Hải Phòng rồi, tớ háo hức quá. Tớ muốn tặng cậu một cái gì đó, một cái gì đó có sức hút tương đương hoặc phải hơn hẳn cái khắn gội đầu tớ mua cho cậu kia.</p>
+    <p>Thế là tớ chọn mua Miko, tớ biết cậu thích nó lắm. Tớ định kiếm hết cho cậu cơ, nhưng mà set đấy nặng chết (chưa kể là có những tập cậu có rồi), mang nó về Hải Phòng thì không khả thi lắm. Và tớ nghĩ việc sưu tập cũng có cái hay của riêng nó.</p>
+    <p>Đó, thì nhân dịp chẳng gì cả, tớ muốn tặng cậu mẩy quyển Miko. Tớ mong là cậu vui khi nhận được chúng và vui hơn nữa khi vô tình đọc được những dòng này</p>
+    <p>Yêu và nhớ cậu nhiều, Biển của tớ..</p>
+    <!-- Thêm các nội dung khác của phong thư -->
+  </div>
+
+  <audio id="audioPlayer" src="春野 - Cinnaber MV.mp3" loop></audio>
+
+  <script>
+    function openLetter() {
+      var letter = document.getElementById("letterContent");
+      letter.classList.add("active");
+      var imageContainer = document.querySelector(".image-container");
+      imageContainer.classList.add("open");
+      imageContainer.style.display = "none";
+
+      // Phát âm thanh khi mở phong thư
+      var audioPlayer = document.getElementById("audioPlayer");
+      audioPlayer.play();
+    }
+
+    // Tự động phát âm thanh khi trang web được tải
+    window.onload = function () {
+      var audioPlayer = document.getElementById("audioPlayer");
+      audioPlayer.play();
+    };
+  </script>
+</body>
+</html>
